@@ -1,6 +1,8 @@
 package by.bsuir.dvornikova.ht1;
 
 import by.bsuir.dvornikova.ht1.util.DBWorker;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,21 +10,23 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Data
+@NoArgsConstructor
 public class Person {
 
     // Данные записи о человеке.
-    private String id = "";
+    private String id = "0";
     private String name = "";
     private String surname = "";
-    private String middlename = "";
-    private HashMap<String, String> phones = new HashMap<String, String>();
+    private String middleName = "";
+    private HashMap<String, String> phones = new HashMap<>();
 
     // Конструктор для создания записи о человеке на основе данных из БД.
-    public Person(String id, String name, String surname, String middlename) {
+    public Person(String id, String name, String surname, String middleName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.middlename = middlename;
+        this.middleName = middleName;
 
         // Извлечение телефонов человека из БД.
         ResultSet db_data = DBWorker.getInstance().getDBData("SELECT * FROM `phone` WHERE `owner`=" + id);
@@ -39,20 +43,11 @@ public class Person {
         }
     }
 
-    // Конструктор для создания пустой записи о человеке.
-    public Person() {
-        this.id = "0";
-        this.name = "";
-        this.surname = "";
-        this.middlename = "";
-    }
-
     // Конструктор для создания записи, предназначенной для добавления в БД.
-    public Person(String name, String surname, String middlename) {
-        this.id = "0";
+    public Person(String name, String surname, String middleName) {
         this.name = name;
         this.surname = surname;
-        this.middlename = middlename;
+        this.middleName = middleName;
     }
 
     // Валидация частей ФИО. Для отчества можно передать второй параетр == true,
@@ -67,53 +62,5 @@ public class Person {
         }
 
     }
-
-    // ++++++++++++++++++++++++++++++++++++++
-    // Геттеры и сеттеры
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getSurname() {
-        return this.surname;
-    }
-
-    public String getMiddlename() {
-        if ((this.middlename != null) && (!this.middlename.equals("null"))) {
-            return this.middlename;
-        } else {
-            return "";
-        }
-    }
-
-    public HashMap<String, String> getPhones() {
-        return this.phones;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
-    }
-
-    public void setPhones(HashMap<String, String> phones) {
-        this.phones = phones;
-    }
-    // Геттеры и сеттеры
-    // --------------------------------------
 
 }

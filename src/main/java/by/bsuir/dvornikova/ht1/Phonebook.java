@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Phonebook {
 
     // Хранилище записей о людях.
-    private HashMap<String, Person> persons = new HashMap<String, Person>();
+    private HashMap<String, Person> persons = new HashMap<>();
 
     // Объект для работы с БД.
     private DBWorker db = DBWorker.getInstance();
@@ -30,7 +30,7 @@ public class Phonebook {
     protected Phonebook() throws ClassNotFoundException, SQLException {
         ResultSet db_data = this.db.getDBData("SELECT * FROM `person` ORDER BY `surname` ASC");
         while (db_data.next()) {
-            this.persons.put(db_data.getString("id"), new Person(db_data.getString("id"), db_data.getString("name"), db_data.getString("surname"), db_data.getString("middlename")));
+            this.persons.put(db_data.getString("id"), new Person(db_data.getString("id"), db_data.getString("name"), db_data.getString("surname"), db_data.getString("middleName")));
         }
     }
 
@@ -41,7 +41,7 @@ public class Phonebook {
 
         // У человека может не быть отчества.
         if (!person.getSurname().equals("")) {
-            query = "INSERT INTO `person` (`name`, `surname`, `middlename`) VALUES ('" + person.getName() + "', '" + person.getSurname() + "', '" + person.getMiddlename() + "')";
+            query = "INSERT INTO `person` (`name`, `surname`, `middleName`) VALUES ('" + person.getName() + "', '" + person.getSurname() + "', '" + person.getMiddleName() + "')";
         } else {
             query = "INSERT INTO `person` (`name`, `surname`) VALUES ('" + person.getName() + "', '" + person.getSurname() + "')";
         }
@@ -69,7 +69,7 @@ public class Phonebook {
 
         // У человека может не быть отчества.
         if (!person.getSurname().equals("")) {
-            query = "UPDATE `person` SET `name` = '" + person.getName() + "', `surname` = '" + person.getSurname() + "', `middlename` = '" + person.getMiddlename() + "' WHERE `id` = " + id_filtered;
+            query = "UPDATE `person` SET `name` = '" + person.getName() + "', `surname` = '" + person.getSurname() + "', `middleName` = '" + person.getMiddleName() + "' WHERE `id` = " + id_filtered;
         } else {
             query = "UPDATE `person` SET `name` = '" + person.getName() + "', `surname` = '" + person.getSurname() + "' WHERE `id` = " + id_filtered;
         }

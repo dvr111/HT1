@@ -42,7 +42,7 @@ public class ManagePersonServlet extends HttpServlet {
             error_message += "Фамилия должна быть строкой от 1 до 150 символов из букв, цифр, знаков подчёркивания и знаков минус.<br />";
         }
 
-        if (!person.validateFMLNamePart(person.getMiddlename(), true)) {
+        if (!person.validateFMLNamePart(person.getMiddleName(), true)) {
             error_message += "Отчество должно быть строкой от 0 до 150 символов из букв, цифр, знаков подчёркивания и знаков минус.<br />";
         }
 
@@ -166,7 +166,7 @@ public class ManagePersonServlet extends HttpServlet {
         // Добавление записи.
         if (add_go != null) {
             // Создание записи на основе данных из формы.
-            Person new_person = new Person(request.getParameter("name"), request.getParameter("surname"), request.getParameter("middlename"));
+            Person new_person = new Person(request.getParameter("name"), request.getParameter("surname"), request.getParameter("middleName"));
 
             // Валидация ФИО.
             String error_message = this.validatePersonFMLName(new_person);
@@ -214,7 +214,7 @@ public class ManagePersonServlet extends HttpServlet {
             Person updatable_person = this.phonebook.getPerson(request.getParameter("id"));
             updatable_person.setName(request.getParameter("name"));
             updatable_person.setSurname(request.getParameter("surname"));
-            updatable_person.setMiddlename(request.getParameter("middlename"));
+            updatable_person.setMiddleName(request.getParameter("middleName"));
 
             // Валидация ФИО.
             String error_message = this.validatePersonFMLName(updatable_person);
