@@ -58,7 +58,7 @@
           <tr>
            <td><%=person.getSurname()%></td>
            <td><%=person.getName()%></td>
-           <td><%=person.getMiddlename()%></td>
+           <td><%=person.getMiddleName()%></td>
            <td>
             <%
              for(String phone : person.getPhones().values())

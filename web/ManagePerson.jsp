@@ -55,8 +55,11 @@
     </tr>
     <tr>
         <td>Отчество:</td>
-        <td><input type="text" name="middlename" value="<%=person.getMiddlename()%>"/></td>
+        <td><input type="text" name="middlename" value="<%=person.getMiddleName()%>"/></td>
     </tr>
+    <%
+        if(!jsp_parameters.get("current_action").equals("add")) {
+    %>
     <tr>
         <td>Телефоны:</td>
         <td>
@@ -68,9 +71,14 @@
          %></textarea>
         </td>
     </tr>
+    <%
+        }
+    %>
     <tr>
         <td colspan="2" align="center">
-         <input type="submit" name="<%=jsp_parameters.get("next_action")%>" value="<%=jsp_parameters.get("next_action_label")%>" />
+            <input type="submit" name="<%=jsp_parameters.get("next_action")%>" value="<%=jsp_parameters.get("next_action_label")%>" />
+            <br>
+            <a href="<%=request.getContextPath()%>/">Вернуться к списку</a>
         </td>
     </tr> 
  </table>
