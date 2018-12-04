@@ -60,7 +60,11 @@ public class Person {
             Matcher matcher = Pattern.compile("[\\w-]{1,150}").matcher(fml_name_part);
             return matcher.matches();
         }
+    }
 
+    public boolean validatePhone(String phone) {
+        Matcher matcher = Pattern.compile("[0-9+\\-#]{2,50}").matcher(phone);
+        return matcher.matches();
     }
 
 }

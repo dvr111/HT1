@@ -63,12 +63,28 @@
     <tr>
         <td>Телефоны:</td>
         <td>
-         <textarea name="phones" cols="40" rows="5"><%
-          for(String phone : person.getPhones().values())
-           {
-         	out.write(phone + "\n");
-           }
-         %></textarea>
+            <table>
+                <tbody>
+                    <%
+                        for(String phone : person.getPhones().values()) {
+                    %>
+                        <tr>
+                            <td>
+                                <% out.write(phone); %>
+                            </td>
+                            <td>
+                                <a href="<%=request.getContextPath()%>/">Редактировать</a>
+                            </td>
+                            <td>
+                                <a href="<%=request.getContextPath()%>/">Удалить</a>
+                            </td>
+                        </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+            <a href="<%=request.getContextPath()%>/">Добавить</a>
         </td>
     </tr>
     <%
